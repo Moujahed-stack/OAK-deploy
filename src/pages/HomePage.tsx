@@ -23,7 +23,7 @@ export function HomePage() {
   })
 
   const heading = useMemo(() => {
-    if (category && size) return `${getCategoryLabel(category)} — Size ${size}`
+    if (category && size) return `${getCategoryLabel(category)} — ${size}`
     if (category) return getCategoryLabel(category)
     if (size) return `Size ${size}`
     return 'Shop All'
@@ -39,17 +39,17 @@ export function HomePage() {
 
   if (error) {
     return (
-      <div className="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6">
-        <p className="text-red-600">Failed to load products. Check your Supabase configuration.</p>
+      <div className="mx-auto max-w-7xl px-3 py-16 text-center sm:px-6">
+        <p className="text-sm text-red-600 sm:text-base">Failed to load products. Check your Supabase configuration.</p>
       </div>
     )
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
-      <div className="mb-6 text-center sm:mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{heading}</h1>
-        <p className="mt-2 text-gray-600">Discover our latest collection of premium clothing</p>
+    <div className="mx-auto max-w-7xl px-3 py-4 sm:px-6 sm:py-12">
+      <div className="mb-4 sm:mb-8">
+        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">{heading}</h1>
+        <p className="mt-1 text-sm text-gray-600 sm:mt-2 sm:text-base">Premium clothing for every occasion</p>
       </div>
 
       <ProductFilters />
@@ -57,10 +57,10 @@ export function HomePage() {
       {!products?.length ? (
         <EmptyState
           title="No products match your filters"
-          description="Try a different type or size, or clear filters to see everything."
+          description="Try a different type or size, or clear filters."
         />
       ) : (
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2.5 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

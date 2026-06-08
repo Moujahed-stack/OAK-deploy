@@ -90,6 +90,58 @@ supabase secrets set ADMIN_NOTIFICATION_EMAIL=oak@admin.com
 
 Checkout still succeeds if email delivery fails.
 
+## Deploy to Vercel (CLI — no GitHub app required)
+
+Live site: **https://oak-nine.vercel.app**
+
+### First-time setup
+
+```bash
+npm install
+npx vercel login          # browser device login
+npx vercel link --yes --project oak
+```
+
+Add environment variables (production):
+
+```bash
+echo YOUR_SUPABASE_URL | npx vercel env add VITE_SUPABASE_URL production
+echo YOUR_PUBLISHABLE_KEY | npx vercel env add VITE_SUPABASE_PUBLISHABLE_KEY production
+```
+
+Deploy:
+
+```bash
+npx vercel --prod --yes
+```
+
+### Supabase auth URLs
+
+In [Supabase Dashboard](https://supabase.com/dashboard) → **Authentication → URL Configuration**:
+
+- **Site URL:** `https://oak-nine.vercel.app`
+- **Redirect URLs:** `https://oak-nine.vercel.app/**` and `http://localhost:5173/**`
+
+### Redeploy after code changes
+
+```bash
+npx vercel --prod --yes
+```
+
+### Custom domain (optional)
+
+Vercel dashboard → **oak** project → **Settings → Domains**
+
+### Upgrade path
+
+| Service | Free | When to upgrade |
+|---------|------|-----------------|
+| Vercel | Hobby | More bandwidth, team features |
+| Supabase | Free | Backups, no pause, more DB storage |
+| Resend | Free tier | More order emails |
+
+---
+
 ## Tech Stack
 
 - **Frontend:** Vite, React, TypeScript, React Router, TailwindCSS, TanStack Query, React Hook Form, Zod

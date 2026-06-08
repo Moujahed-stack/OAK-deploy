@@ -111,9 +111,10 @@ export function AdminPromotionsPage() {
 
   return (
     <div>
-      <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">Promotions</h1>
+      <div className="mb-4 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-center sm:justify-between">
+        <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">Promotions</h1>
         <Button
+          className="w-full sm:w-auto"
           onClick={() => {
             setEditing(null)
             reset(toFormValues())

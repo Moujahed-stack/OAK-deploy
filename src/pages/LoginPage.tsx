@@ -44,7 +44,7 @@ export function LoginPage() {
   }
 
   return (
-    <div className="mx-auto flex min-h-[70vh] max-w-md items-center px-4 py-12 sm:px-6">
+    <div className="mx-auto flex min-h-[60vh] max-w-md items-center px-3 py-8 sm:px-6 sm:py-12">
       <Card className="w-full">
         <h1 className="text-2xl font-bold text-gray-900">Sign In</h1>
         <p className="mt-2 text-sm text-gray-600">

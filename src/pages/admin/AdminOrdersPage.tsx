@@ -37,10 +37,41 @@ export function AdminOrdersPage() {
 
   return (
     <div>
-      <h1 className="mb-8 text-2xl font-bold text-gray-900">Orders</h1>
+      <h1 className="mb-4 text-xl font-bold text-gray-900 sm:mb-8 sm:text-2xl">Orders</h1>
 
-      <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
-        <table className="w-full min-w-[800px] text-left text-sm">
+      {/* Mobile cards */}
+      <div className="space-y-3 lg:hidden">
+        {orders?.map((order) => (
+          <div key={order.id} className="rounded-xl border border-gray-200 bg-white p-4">
+            <div className="flex items-start justify-between gap-2">
+              <div className="min-w-0">
+                <Link
+                  to={`/admin/orders/${order.id}`}
+                  className="font-semibold text-brand-700 active:underline"
+                >
+                  #{order.id.slice(0, 8)}
+                </Link>
+                <p className="mt-0.5 truncate text-sm font-medium text-gray-900">{order.customer_name}</p>
+                <p className="text-xs text-gray-500">{order.phone}</p>
+              </div>
+              <p className="shrink-0 text-base font-bold text-gray-900">{formatCurrency(order.total_price)}</p>
+            </div>
+            <div className="mt-3 flex items-center justify-between gap-2 border-t border-gray-100 pt-3">
+              <p className="text-xs text-gray-500">{formatDate(order.created_at)}</p>
+              <OrderStatusSelect
+                orderId={order.id}
+                status={order.status}
+                onUpdate={handleStatusUpdate}
+                compact
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop table */}
+      <div className="hidden overflow-x-auto rounded-xl border border-gray-200 bg-white lg:block">
+        <table className="w-full text-left text-sm">
           <thead className="border-b border-gray-200 bg-gray-50">
             <tr>
               <th className="px-4 py-3 font-medium text-gray-700">Order</th>

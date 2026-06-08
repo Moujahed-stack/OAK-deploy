@@ -52,21 +52,21 @@ export function ProductFilters() {
   const hasFilters = category || size
 
   return (
-    <div className="mb-8 rounded-xl border border-gray-200 bg-white p-4 sm:p-6">
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-gray-500">Filters</h2>
+    <div className="mb-4 rounded-xl border border-gray-200 bg-white p-3 sm:mb-8 sm:p-6">
+      <div className="mb-3 flex items-center justify-between gap-2 sm:mb-4">
+        <h2 className="text-xs font-semibold uppercase tracking-wide text-gray-500 sm:text-sm">Filters</h2>
         {hasFilters && (
           <button
             type="button"
             onClick={clearAll}
-            className="text-sm font-medium text-brand-700 hover:underline"
+            className="min-h-[36px] px-2 text-sm font-medium text-brand-700 active:underline"
           >
             Clear all
           </button>
         )}
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
         <Select
           label="Type"
           value={category}
@@ -82,7 +82,7 @@ export function ProductFilters() {
       </div>
 
       {category && (
-        <p className="mt-3 text-xs text-gray-500">
+        <p className="mt-2 text-xs text-gray-500 sm:mt-3">
           {getCategoryById(category as ProductCategoryId)?.description}
         </p>
       )}

@@ -182,13 +182,13 @@ export function AdminProductsPage() {
 
   return (
     <div>
-      <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">Products</h1>
-        <Button onClick={openCreate}>Add Product</Button>
+      <div className="mb-4 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-center sm:justify-between">
+        <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">Products</h1>
+        <Button onClick={openCreate} className="w-full sm:w-auto">Add Product</Button>
       </div>
 
       {showForm && (
-        <Card className="mb-8">
+        <Card className="mb-6 sm:mb-8">
           <h2 className="mb-4 text-lg font-semibold">
             {editing ? 'Edit Product' : 'New Product'}
           </h2>
@@ -219,21 +219,22 @@ export function AdminProductsPage() {
                 type="file"
                 accept="image/*"
                 onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-                className="text-sm"
+                className="w-full text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-brand-100 file:px-3 file:py-2 file:text-sm file:font-medium file:text-brand-900"
               />
             </div>
-            <label className="flex items-center gap-2 text-sm">
-              <input type="checkbox" {...register('active')} />
+            <label className="flex min-h-[44px] items-center gap-2 text-sm">
+              <input type="checkbox" className="h-5 w-5" {...register('active')} />
               Active
             </label>
             {error && <p className="text-sm text-red-600 sm:col-span-2">{error}</p>}
-            <div className="flex gap-2 sm:col-span-2">
-              <Button type="submit" loading={saveMutation.isPending}>
+            <div className="flex flex-col gap-2 sm:col-span-2 sm:flex-row">
+              <Button type="submit" loading={saveMutation.isPending} className="w-full sm:w-auto">
                 Save
               </Button>
               <Button
                 type="button"
                 variant="outline"
+                className="w-full sm:w-auto"
                 onClick={() => {
                   setShowForm(false)
                   setEditing(null)
@@ -246,8 +247,55 @@ export function AdminProductsPage() {
         </Card>
       )}
 
-      <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
-        <table className="w-full min-w-[700px] text-left text-sm">
+      {/* Mobile cards */}
+      <div className="space-y-3 lg:hidden">
+        {products?.map((product) => (
+          <div key={product.id} className="rounded-xl border border-gray-200 bg-white p-4">
+            <div className="flex gap-3">
+              {product.image_url ? (
+                <img src={product.image_url} alt="" className="h-16 w-16 shrink-0 rounded-lg object-cover" />
+              ) : (
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-2xl">👕</div>
+              )}
+              <div className="min-w-0 flex-1">
+                <div className="flex items-start justify-between gap-2">
+                  <p className="truncate font-semibold text-gray-900">{product.name}</p>
+                  <Badge variant={product.active ? 'success' : 'default'}>
+                    {product.active ? 'Active' : 'Inactive'}
+                  </Badge>
+                </div>
+                <p className="text-sm text-gray-500">{getCategoryLabel(product.category)}</p>
+                <p className="mt-1 font-semibold text-brand-900">{formatCurrency(product.price)}</p>
+              </div>
+            </div>
+            <div className="mt-3 flex flex-wrap gap-2 border-t border-gray-100 pt-3">
+              <Button size="sm" variant="outline" onClick={() => openEdit(product)}>
+                Edit
+              </Button>
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={() => toggleMutation.mutate({ id: product.id, active: !product.active })}
+              >
+                {product.active ? 'Deactivate' : 'Activate'}
+              </Button>
+              <Button
+                size="sm"
+                variant="danger"
+                onClick={() => {
+                  if (confirm('Delete this product?')) deleteMutation.mutate(product.id)
+                }}
+              >
+                Delete
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop table */}
+      <div className="hidden overflow-x-auto rounded-xl border border-gray-200 bg-white lg:block">
+        <table className="w-full text-left text-sm">
           <thead className="border-b border-gray-200 bg-gray-50">
             <tr>
               <th className="px-4 py-3 font-medium text-gray-700">Product</th>

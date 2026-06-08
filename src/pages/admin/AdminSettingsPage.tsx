@@ -76,8 +76,8 @@ export function AdminSettingsPage() {
   }
 
   return (
-    <div className="max-w-lg space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
+    <div className="max-w-lg space-y-4 sm:space-y-6">
+      <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">Settings</h1>
 
       <Card>
         <h2 className="mb-2 text-lg font-semibold">Order notifications</h2>
@@ -103,14 +103,15 @@ export function AdminSettingsPage() {
                 : 'Failed to save settings'}
             </p>
           )}
-          <div className="flex flex-wrap gap-2">
-            <Button type="submit" loading={saveMutation.isPending}>
+          <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+            <Button type="submit" loading={saveMutation.isPending} className="w-full sm:w-auto">
               Save
             </Button>
             <Button
               type="button"
               variant="outline"
               loading={testMutation.isPending}
+              className="w-full sm:w-auto"
               onClick={() => {
                 setTestMessage(null)
                 testMutation.mutate()

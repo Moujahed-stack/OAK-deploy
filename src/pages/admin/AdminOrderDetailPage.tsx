@@ -45,9 +45,9 @@ export function AdminOrderDetailPage() {
 
   return (
     <div>
-      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mb-4 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Order #{order.id.slice(0, 8)}</h1>
+          <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">Order #{order.id.slice(0, 8)}</h1>
           <p className="text-sm text-gray-500">{formatDate(order.created_at)}</p>
         </div>
         <OrderStatusBadge status={order.status} />

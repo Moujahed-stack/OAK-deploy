@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-brand-50 text-gray-900 antialiased;
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-brand-50 text-gray-900 antialiased;
+  }
+
+  /* Prevent iOS zoom on input focus */
+  input,
+  select,
+  textarea {
+    @apply text-base;
+  }
+}
+
+@layer utilities {
+  .pb-nav {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
 }

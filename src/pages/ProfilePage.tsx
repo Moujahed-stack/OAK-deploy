@@ -53,8 +53,8 @@ export function ProfilePage() {
   }
 
   return (
-    <div className="mx-auto max-w-lg px-4 py-8 sm:px-6">
-      <h1 className="mb-8 text-2xl font-bold text-gray-900">My Profile</h1>
+    <div className="mx-auto max-w-lg px-3 py-4 sm:px-6 sm:py-8">
+      <h1 className="mb-4 text-xl font-bold text-gray-900 sm:mb-8 sm:text-2xl">My Profile</h1>
       <Card>
         <p className="mb-4 text-sm text-gray-500">Email: {user?.email}</p>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

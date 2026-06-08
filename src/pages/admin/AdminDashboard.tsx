@@ -42,8 +42,8 @@ export function AdminDashboard() {
 
   return (
     <div>
-      <h1 className="mb-8 text-2xl font-bold text-gray-900">Dashboard</h1>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      <h1 className="mb-4 text-xl font-bold text-gray-900 sm:mb-8 sm:text-2xl">Dashboard</h1>
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-5">
         {stats.map((stat) => (
           <Card key={stat.label}>
             <p className="text-sm text-gray-500">{stat.label}</p>

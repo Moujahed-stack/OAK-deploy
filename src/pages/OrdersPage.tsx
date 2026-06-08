@@ -33,8 +33,8 @@ export function OrdersPage() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-      <h1 className="mb-8 text-2xl font-bold text-gray-900 sm:text-3xl">My Orders</h1>
+    <div className="mx-auto max-w-7xl px-3 py-4 sm:px-6 sm:py-8">
+      <h1 className="mb-4 text-xl font-bold text-gray-900 sm:mb-8 sm:text-3xl">My Orders</h1>
 
       {!orders?.length ? (
         <EmptyState
