@@ -1,0 +1,5 @@
+# Deploy with: supabase functions deploy notify-admin-order
+# Guest checkout must call this without a logged-in JWT
+
+[functions.notify-admin-order]
+verify_jwt = false
